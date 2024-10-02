@@ -1,13 +1,9 @@
 package com.pd.spring_security_friday_talk.config;
 
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
 import java.util.Collection;
 
 import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -24,7 +20,6 @@ import org.springframework.security.web.authentication.AuthenticationConverter;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -48,22 +43,27 @@ public class AuthorizationRequestConverter implements AuthenticationConverter {
             return null;
         }
 
-        Jwt jwt = getJwt(token);
+        Jwt jwt = extractAndDecodeHeader(token);
         String username = jwt.getClaimAsString(JwtClaimNames.SUB);
         Collection<GrantedAuthority> authorities = GRANTED_AUTHORITIES_CONVERTER.convert(jwt);
-        var authentication = new UsernamePasswordAuthenticationToken(username, null, authorities);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
+        SecurityContextHolder
+            .getContext()
+            .setAuthentication(new UsernamePasswordAuthenticationToken(username, null, authorities));
 
         return null;
     }
 
-    private Jwt getJwt(String token) {
+    private Jwt extractAndDecodeHeader(String token) {
         try {
-            byte[] bytes = Base64.getDecoder().decode(jwtSecret.getBytes());
-            SecretKey secret = new SecretKeySpec(bytes, "SHA256");
-            Claims payload = Jwts.parser().verifyWith(secret).build().parseSignedClaims(token).getPayload();
+            SecretKey key = Keys.hmacShaKeyFor(jwtSecret.getBytes());
+            Claims payload = Jwts.parser().verifyWith(key).build().parseSignedClaims(token).getPayload();
 
-            return Jwt.withTokenValue(token).claims(claims -> claims.putAll(payload)).build();
+            return Jwt.withTokenValue(token)
+                .claims(claims -> claims.putAll(payload))
+                .headers(headers -> {
+                    headers.put("alg", "HS256");
+                    headers.put("typ", "JWT");
+                }).build();
         } catch (JwtException exception) {
             throw new OAuth2AuthorizationCodeRequestAuthenticationException(
                 new OAuth2Error(OAuth2ErrorCodes.INVALID_TOKEN, exception.getMessage(), null), exception, null);

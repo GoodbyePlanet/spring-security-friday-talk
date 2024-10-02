@@ -64,7 +64,7 @@ public class SecurityConfig {
             .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
             .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
             .redirectUri("http://localhost:8082")
-            .scope("read.messages")
+            .scope("read")
             .clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
             .build();
 
