@@ -1,5 +1,7 @@
 package com.pd.spring_security_friday_talk.config;
 
+import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
+
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.interfaces.RSAPrivateKey;
@@ -12,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
@@ -50,9 +53,12 @@ public class SecurityConfig {
     @Order(2)
     public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http)
         throws Exception {
-        // Every request has to be authenticated
-        http.authorizeHttpRequests((authorize) -> authorize.anyRequest().authenticated());
-
+        http
+            .csrf(AbstractHttpConfigurer::disable)
+            .authorizeHttpRequests((authorize) -> {
+                authorize.anyRequest().authenticated();
+            })
+            .sessionManagement(session -> session.sessionCreationPolicy(STATELESS));
         return http.build();
     }
 
