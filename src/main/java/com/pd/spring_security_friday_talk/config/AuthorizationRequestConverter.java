@@ -50,6 +50,7 @@ public class AuthorizationRequestConverter implements AuthenticationConverter {
             .getContext()
             .setAuthentication(new UsernamePasswordAuthenticationToken(username, null, authorities));
 
+        // Do whatever Spring does next by default
         return null;
     }
 
