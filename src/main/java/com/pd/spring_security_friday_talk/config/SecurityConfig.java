@@ -1,5 +1,6 @@
 package com.pd.spring_security_friday_talk.config;
 
+import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.security.config.http.SessionCreationPolicy.STATELESS;
 
 import java.security.KeyPair;
@@ -33,6 +34,8 @@ import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
 
+import jakarta.servlet.DispatcherType;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -56,7 +59,10 @@ public class SecurityConfig {
         http
             .csrf(AbstractHttpConfigurer::disable)
             .authorizeHttpRequests((authorize) -> {
-                authorize.anyRequest().authenticated();
+                // https://docs.spring.io/spring-security/reference/servlet/authorization/authorize-http-requests.html#_all_dispatches_are_authorized
+                authorize.dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.ERROR).permitAll()
+                    .requestMatchers(GET, "/hello").permitAll()
+                    .anyRequest().authenticated();
             })
             .sessionManagement(session -> session.sessionCreationPolicy(STATELESS));
         return http.build();
