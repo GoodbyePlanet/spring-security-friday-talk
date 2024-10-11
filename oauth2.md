@@ -60,4 +60,7 @@ https://excalidraw.com/#json=oIc326B8dep1jcBM6ye4L,1oupOH2SUJK3NWpyX49VzA
 https://www.oauth.com/playground/
 
 ### oauth2 flow
+![img.png](img.png)
+
+### oauth2 flow with details
 ![img_1.png](img_1.png)
