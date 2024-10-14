@@ -62,5 +62,8 @@ https://www.oauth.com/playground/
 ### oauth2 flow
 ![img.png](img.png)
 
-### oauth2 flow with details
+### oauth 2.0 flow for confidential clients
 ![img_1.png](img_1.png)
+
+### oauth 2.0 flow for public clients
+![img_2.png](img_2.png)
