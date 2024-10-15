@@ -62,8 +62,11 @@ https://www.oauth.com/playground/
 ### oauth2 flow
 ![img.png](img.png)
 
-### oauth 2.0 flow for confidential clients
+### oauth 2.0 flow with authorization_code grant type for confidential clients
 ![img_1.png](img_1.png)
 
-### oauth 2.0 flow for public clients
+### oauth 2.0 flow with authorization_code grant type for public clients (PKCE)
 ![img_2.png](img_2.png)
+
+### oauth 2.0 flow with client_credentials grant type
+![img_3.png](img_3.png)
