@@ -70,3 +70,6 @@ https://www.oauth.com/playground/
 
 ### oauth 2.0 flow with client_credentials grant type
 ![img_3.png](img_3.png)
+
+
+### oauth 2.0 presentation drawings
