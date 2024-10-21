@@ -12,7 +12,6 @@ Authorization: OAuth 2.0 is designed to give apps permission to access a user’
 Authentication: This is about verifying the identity of a user—answering the question, "Who is this user?
 
 #### Core Concepts
-https://excalidraw.com/#json=oIc326B8dep1jcBM6ye4L,1oupOH2SUJK3NWpyX49VzA
 
 - resource owner
 - client
