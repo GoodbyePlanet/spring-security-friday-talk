@@ -58,29 +58,29 @@ public class SecurityConfig {
         throws Exception {
         http
             .csrf(AbstractHttpConfigurer::disable)
+            .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
             .authorizeHttpRequests((authorize) -> {
                 // https://docs.spring.io/spring-security/reference/servlet/authorization/authorize-http-requests.html#_all_dispatches_are_authorized
                 authorize.dispatcherTypeMatchers(DispatcherType.FORWARD, DispatcherType.ERROR).permitAll()
                     .requestMatchers(GET, "/hello").permitAll()
                     .anyRequest().authenticated();
-            })
-            .sessionManagement(session -> session.sessionCreationPolicy(STATELESS));
+            });
         return http.build();
     }
 
     @Bean
     public RegisteredClientRepository registeredClientRepository() {
-        RegisteredClient publicClient = RegisteredClient.withId(UUID.randomUUID().toString())
+        RegisteredClient confidentialClient = RegisteredClient.withId(UUID.randomUUID().toString())
             .clientId("public-client")
             .clientSecret("{noop}secret")
             .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
             .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-            .redirectUri("http://localhost:8082")
+            .redirectUri("http://localhost:8080/authorized")
             .scope("read")
             .clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
             .build();
 
-        return new InMemoryRegisteredClientRepository(publicClient);
+        return new InMemoryRegisteredClientRepository(confidentialClient);
     }
 
     @Bean
