@@ -58,16 +58,12 @@ Authentication: This is about verifying the identity of a user—answering the q
 ### Useful links
 https://www.oauth.com/playground/
 
-### IMPLICIT Flow for PUBLIC client - Deprecated
 ![implicit-flow.svg](docs/implicit-flow.svg)
 
-### Authorization code flow with PKCE
 ![authorization-code-flow-pkce.svg](docs/authorization-code-flow-pkce.svg)
 
-### Authorization flow with Confidential client (BFF approach)
 ![authorization-code-flow-bff.svg](docs/authorization-code-flow-bff.svg)
 
-### Client credentials flow
 ![client-credentials-flow.svg](docs/client-credentials-flow.svg)
 
 ### oauth 2.0 presentation drawings - use https://excalidraw.com/
