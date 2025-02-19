@@ -1,4 +1,4 @@
-package src.main.java.com.app.auth_server;
+package com.app.auth_server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
