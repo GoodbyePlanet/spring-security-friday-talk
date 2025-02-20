@@ -10,6 +10,7 @@
     <modules>
         <module>auth-server</module>
         <module>oauth2-client</module>
+        <module>resource-server</module>
     </modules>
 
 </project>

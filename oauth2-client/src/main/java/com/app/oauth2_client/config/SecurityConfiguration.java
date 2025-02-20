@@ -50,11 +50,4 @@ public class SecurityConfiguration {
 
         return authorizedClientManager;
     }
-
-//    @Bean
-//    public ReactiveOAuth2AccessTokenResponseClient<OAuth2AuthorizationCodeGrantRequest> accessTokenResponseClient() {
-//        WebClientReactiveAuthorizationCodeTokenResponseClient accessTokenResponseClient =
-//                new WebClientReactiveAuthorizationCodeTokenResponseClient();
-//        return accessTokenResponseClient;
-//    }
 }
