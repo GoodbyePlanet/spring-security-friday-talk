@@ -80,7 +80,7 @@ public class AuthorizationServerConfiguration {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        UserDetails userDetails = User.withUsername("user")
+        UserDetails userDetails = User.withUsername("doboj")
                 .password("{noop}pass")
                 .roles("USER")
                 .build();
@@ -99,47 +99,47 @@ public class AuthorizationServerConfiguration {
                 .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
                 .redirectUri("http://client.local:8080/login/oauth2/code/confidential-client")
                 .redirectUri("http://client.local:8080/authorized")
-                .redirectUri("http://localhost:8082")
                 .scope(OidcScopes.OPENID)
                 .scope(OidcScopes.PROFILE)
-                .scope("messages.read")
+                .scope("contacts.read")
+                .scope("contacts.write")
                 .clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
                 .build();
 
         return new InMemoryRegisteredClientRepository(confidentialClient);
     }
 
-    @Bean
-    public JWKSource<SecurityContext> jwkSource() {
-        KeyPair keyPair = generateRsaKey();
-        RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
-        RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
-        RSAKey rsaKey = new RSAKey.Builder(publicKey)
-                .privateKey(privateKey)
-                .keyID(UUID.randomUUID().toString())
-                .build();
-        JWKSet jwkSet = new JWKSet(rsaKey);
-        return new ImmutableJWKSet<>(jwkSet);
-    }
-
-    private static KeyPair generateRsaKey() {
-        KeyPair keyPair;
-        try {
-            KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
-            keyPairGenerator.initialize(2048);
-            keyPair = keyPairGenerator.generateKeyPair();
-        }
-        catch (Exception ex) {
-            throw new IllegalStateException(ex);
-        }
-        return keyPair;
-    }
-
-    @Bean
-    public JwtDecoder jwtDecoder(JWKSource<SecurityContext> jwkSource) {
-        return OAuth2AuthorizationServerConfiguration.jwtDecoder(jwkSource);
-    }
-
+//    @Bean
+//    public JWKSource<SecurityContext> jwkSource() {
+//        KeyPair keyPair = generateRsaKey();
+//        RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
+//        RSAPrivateKey privateKey = (RSAPrivateKey) keyPair.getPrivate();
+//        RSAKey rsaKey = new RSAKey.Builder(publicKey)
+//                .privateKey(privateKey)
+//                .keyID(UUID.randomUUID().toString())
+//                .build();
+//        JWKSet jwkSet = new JWKSet(rsaKey);
+//        return new ImmutableJWKSet<>(jwkSet);
+//    }
+//
+//    private static KeyPair generateRsaKey() {
+//        KeyPair keyPair;
+//        try {
+//            KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+//            keyPairGenerator.initialize(2048);
+//            keyPair = keyPairGenerator.generateKeyPair();
+//        }
+//        catch (Exception ex) {
+//            throw new IllegalStateException(ex);
+//        }
+//        return keyPair;
+//    }
+//
+//    @Bean
+//    public JwtDecoder jwtDecoder(JWKSource<SecurityContext> jwkSource) {
+//        return OAuth2AuthorizationServerConfiguration.jwtDecoder(jwkSource);
+//    }
+//
     @Bean
     public AuthorizationServerSettings authorizationServerSettings() {
         return AuthorizationServerSettings.builder().issuer("http://auth.local:9000").build();

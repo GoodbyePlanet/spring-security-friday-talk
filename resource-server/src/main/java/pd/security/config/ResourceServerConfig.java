@@ -14,13 +14,11 @@ public class ResourceServerConfig {
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-//                .securityMatcher("/messages/**")
+        http.securityMatcher("/contacts/**")
                 .authorizeHttpRequests(authorize -> {
-                            authorize.requestMatchers("/messages/**").hasAuthority("SCOPE_messages.read");
+                            authorize.requestMatchers("/contacts/**").hasAuthority("SCOPE_contacts.read");
                             authorize.anyRequest().authenticated();
-                        }
-                )
+                        })
                 .oauth2ResourceServer(oauth2ResourceServer ->
                         oauth2ResourceServer.jwt(withDefaults()));
         return http.build();

@@ -26,7 +26,7 @@ public class ContactsController {
         this.authorizedClientService = authorizedClientService;
     }
 
-    @GetMapping("/fetch-messages")
+    @GetMapping("/fetch-contacts")
     public String fetchResourceData(Model model, @AuthenticationPrincipal OAuth2User principal) {
         OAuth2AuthorizedClient client = authorizedClientService.loadAuthorizedClient(
                 "confidential-client",
@@ -39,12 +39,12 @@ public class ContactsController {
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
         ResponseEntity<List<String>> response = restTemplate.exchange(
-                "http://resource.local:8443/user-messages",
+                "http://resource.local:8443/contacts",
                 HttpMethod.GET,
                 entity,
                 new ParameterizedTypeReference<List<String>>() {}
         );
-        model.addAttribute("messages", response.getBody());
+        model.addAttribute("contacts", response.getBody());
         return "page-templates";
     }
 }

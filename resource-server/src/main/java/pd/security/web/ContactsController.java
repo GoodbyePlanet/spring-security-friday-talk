@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class MessagesController {
+public class ContactsController {
 
-    @GetMapping("/user-messages")
+    @GetMapping("/contacts")
     public List<String> getMessages() {
-        return List.of("Message 1", "Message 2", "Message 3");
+        return List.of("Sir Chats-a-Lot", "Spammy McCaller", "Voicemail King");
     }
 }

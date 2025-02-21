@@ -14,14 +14,10 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/" th:href="@{/}">Home</a>
-                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Authorize</a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/fetch-messages" th:href="@{/fetch-messages}">Get Messages</a></li>
-<!--                        <li><a class="dropdown-item" href="/fetch-messages" th:href="@{/authorize?grant_type=authorization_code}">Authorization Code</a></li>-->
+                        <li><a class="dropdown-item" href="/fetch-contacts" th:href="@{/fetch-contacts}">Get Contacts</a></li>
                     </ul>
                 </li>
             </ul>
@@ -35,20 +31,20 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     </div>
-    <div th:fragment="message-list" th:if="${messages}" class="row py-5 justify-content-start">
+    <div th:fragment="contacts-list" th:if="${contacts}" class="row py-5 justify-content-start">
         <div class="col">
             <table class="table table-striped caption-top">
-                <caption>Messages</caption>
+                <caption>Contacts</caption>
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Message</th>
+                    <th scope="col">Contact</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="message,iterStat : ${messages}">
+                <tr th:each="contact,iterStat : ${contacts}">
                     <th scope="row" th:text="${iterStat.count}"></th>
-                    <td th:text="${message}"></td>
+                    <td th:text="${contact}"></td>
                 </tr>
                 </tbody>
             </table>
