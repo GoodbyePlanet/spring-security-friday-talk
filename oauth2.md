@@ -16,13 +16,13 @@ https://www.oauth.com/playground/
 
 ![core-concepts.svg](docs/core-concepts.svg)
 
-![implicit-flow.svg](docs/implicit-flow.svg)
+![implicit-flow.svg](docs/implicit_flow.svg)
 
-![authorization-code-flow-pkce.svg](docs/authorization-code-flow-pkce.svg)
+![authorization-code-flow-pkce.svg](docs/authorization_code_flow_pkce.svg)
 
-![authorization-code-flow-bff.svg](docs/authorization-code-flow-bff.svg)
+![authorization-code-flow-bff.svg](docs/authorization_code_flow_bff.svg)
 
-![client-credentials-flow.svg](docs/client-credentials-flow.svg)
+![client-credentials-flow.svg](docs/client_credentials_flow.svg)
 
 ### oauth 2.0 presentation drawings - use https://excalidraw.com/
 [drawings](./docs/oauth2.0-24.02.excalidraw)
