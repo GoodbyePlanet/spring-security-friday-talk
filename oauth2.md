@@ -25,4 +25,4 @@ https://www.oauth.com/playground/
 ![client-credentials-flow.svg](docs/client-credentials-flow.svg)
 
 ### oauth 2.0 presentation drawings - use https://excalidraw.com/
-[drawings](./docs/oauth2.0-18.02.excalidraw)
+[drawings](./docs/oauth2.0-24.02.excalidraw)
