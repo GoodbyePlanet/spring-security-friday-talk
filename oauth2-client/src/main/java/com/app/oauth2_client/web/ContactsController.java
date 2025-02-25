@@ -31,7 +31,7 @@ public class ContactsController {
         OAuth2AuthorizedClient client = getAuthorizedClient(principal.getName());
 
         ResponseEntity<List<String>> response = restTemplate.exchange(
-                "http://resource.local:8443/contacts",
+                "http://localhost:8443/contacts",
                 HttpMethod.GET,
                 entity(client),
                 new ParameterizedTypeReference<List<String>>() {

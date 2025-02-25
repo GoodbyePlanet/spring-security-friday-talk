@@ -32,7 +32,7 @@ public class AuthServerApplication {
                         .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
                         .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
                         .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
-                        .redirectUri("http://client.local:8080/login/oauth2/code/confidential-client")
+                        .redirectUri("http://localhost:8080/login/oauth2/code/confidential-client")
                         .scope(OidcScopes.OPENID)
                         .scope(OidcScopes.PROFILE)
                         .scope("contacts.read")
