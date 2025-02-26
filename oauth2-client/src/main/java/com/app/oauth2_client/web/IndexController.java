@@ -15,4 +15,9 @@ public class IndexController {
     public String index() {
         return "index";
     }
+
+    @GetMapping("/logged-out")
+    public String loggedOut() {
+        return "logged-out";
+    }
 }
