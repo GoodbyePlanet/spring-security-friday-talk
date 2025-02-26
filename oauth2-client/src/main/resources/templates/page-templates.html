@@ -31,6 +31,11 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     </div>
+    <div th:fragment="get-contacts" class="row py-5 justify-content-center">
+        <button type="button" class="btn btn-primary">
+            <a class="dropdown-item" href="/fetch-contacts" th:href="@{/fetch-contacts}">Get Contacts</a>
+        </button>
+    </div>
     <div th:fragment="contacts-list" th:if="${contacts}" class="row py-5 justify-content-start">
         <div class="col">
             <table class="table table-striped caption-top">
