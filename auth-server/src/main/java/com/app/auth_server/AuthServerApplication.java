@@ -31,7 +31,6 @@ public class AuthServerApplication {
                         .clientAuthenticationMethod(ClientAuthenticationMethod.CLIENT_SECRET_BASIC)
                         .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
                         .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
-                        .authorizationGrantType(AuthorizationGrantType.CLIENT_CREDENTIALS)
                         .redirectUri("http://localhost:8080/login/oauth2/code/confidential-client")
                         .postLogoutRedirectUri("http://localhost:8080/logged-out")
                         .scope(OidcScopes.OPENID)
