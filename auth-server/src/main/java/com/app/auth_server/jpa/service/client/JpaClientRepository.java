@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.app.auth_server.jpa.entity.client.Client;
+import com.app.auth_server.jpa.repository.client.ClientRepository;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -42,7 +43,7 @@ public class JpaClientRepository implements RegisteredClientRepository {
 	private final com.app.auth_server.jpa.repository.client.ClientRepository clientRepository;
 	private final ObjectMapper objectMapper = new ObjectMapper();
 
-	public JpaClientRepository(com.app.auth_server.jpa.repository.client.ClientRepository clientRepository) {
+	public JpaClientRepository(ClientRepository clientRepository) {
 		Assert.notNull(clientRepository, "clientRepository cannot be null");
 		this.clientRepository = clientRepository;
 
